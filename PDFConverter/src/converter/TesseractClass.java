@@ -13,20 +13,10 @@ public class TesseractClass {
 	private static String FileName;
 	private static String result;
 	private static LocalDateTime date;
+	static FileWriter Writer = null;
+	static File[] listOfFiles;
 	
-	
-	
-	
-	public static void main(String[] args) throws IOException {
-		
-		FileWriter Writer = null;
-		
-		File folder = new File(".");
-		String path = folder.getCanonicalPath();
-		System.out.println(path);
-		File[] listOfFiles = folder.listFiles();
-		
-		
+	private static void OCR() {
 		for (File f : listOfFiles) {
 		    if (f.isFile() && (f.getName().endsWith("f")) || f.getName().endsWith("bmp")
 		    		|| f.getName().endsWith("g") || f.getName().endsWith("b")) {
@@ -68,6 +58,23 @@ public class TesseractClass {
 		    }
 		}
 		 System.out.println("Finito.");
+		}
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+		
+		
+		
+		String folder = new File(".").getCanonicalPath();
+		File sourcePath = new File(folder);
+//		sourcePath.getAbsolutePath();
+//		String path = sourcePath.getAbsolutePath();
+		System.out.println(folder);
+		listOfFiles = sourcePath.listFiles();
+		
+		OCR();
+		
 	}
    
 }
